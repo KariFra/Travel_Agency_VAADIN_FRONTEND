@@ -40,7 +40,7 @@ public class MainView extends AppLayout {
             "Articles");
     private Image opinions = new Image("https://cdn.pixabay.com/photo/2015/10/30/16/42/balloon-1014411_1280.jpg",
             "Opinions");
-    private Label introLabel = new Label("Hi "+ name);
+    private Label introLabel = new Label();
     private Label dataLabel = new Label("Today it is "+ LocalDate.now().getDayOfWeek().toString() + ", "+
             LocalDate.now().getDayOfMonth() +" "+ LocalDate.now().getMonth());
     private Label planLabel = new Label("It is the best time to plan your trip. Grab a drink and look for a" +
@@ -103,6 +103,7 @@ public class MainView extends AppLayout {
         } else {
             tab.setVisible(false);
         }
+        introLabel.setText("Hi "+ name);
         return name;
     }
 

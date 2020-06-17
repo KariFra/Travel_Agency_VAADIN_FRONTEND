@@ -68,7 +68,7 @@ public class LoginView extends AppLayout {
         if(size==0){
             setContent(new Label("There are no articles"));
         } else{
-            setContent(addManyTravellers());
+            setContent(new VerticalLayout(buttonRegister,addManyTravellers()));
         }
     }
 }

@@ -42,7 +42,7 @@ public class TripBookingView extends AppLayout {
     private List<Upgrades> additionsList;
     private DecimalFormat df = new DecimalFormat("#.##");
    private LoginView loginView = new LoginView();
-    private Traveller traveller = travellerService.getTraveller(loginView.number);
+
     private boolean bookTrip;
 
 
@@ -71,6 +71,7 @@ public class TripBookingView extends AppLayout {
     private Label additionsDescription = new Label("Additional options: ");
     private Label additionsAgreeOption = new Label("I want to add additional options to my trip: ");
     private Label stars = new Label();
+    private Label cantLabel = new Label("You cant book this trip as a Stranger ;)");
     private Label starsDescription = new Label("Hotel standard: ");
     private Label priceDescription = new Label("Your total price: ");
     private Label starsChangeOption = new Label("Change hotel standard: ");
@@ -110,7 +111,11 @@ public class TripBookingView extends AppLayout {
         });
         priceCheck.addClickListener(event -> {
             finalPayment.setText(additionsPricing().toString());
-            book.setVisible(true);
+            if(loginView.number != null){
+                book.setVisible(true);
+            }else{
+                cantLabel.setVisible(true);
+            }
         });
         back.addClickListener(event -> UI.getCurrent().navigate("trips"));
         book.addClickListener(event -> {
@@ -141,13 +146,14 @@ public class TripBookingView extends AppLayout {
             starsUpdate.setValue(4);
             return new VerticalLayout(back,new Image(trip.getUrl(),"photo"),city, description,timeLayoutDisplay,
                     foodLayoutDisplay,additionsLayoutDisplay,starsLayoutDisplay,currencyLayout,starsLayoutUpdate,
-                    additionsLayoutUpdate,priceLayoutDisplay,priceCheck, book);
+                    additionsLayoutUpdate,priceLayoutDisplay,priceCheck, book, cantLabel);
         }
         return new VerticalLayout(back,new Image(trip.getUrl(),"photo"),city, description,timeLayoutDisplay,
                 foodLayoutDisplay,additionsLayoutDisplay,starsLayoutDisplay,currencyLayout,update);
     }
 
     private void prepareSettings(){
+        cantLabel.setVisible(false);
         chosenTrip = service.getTrip(tripsView.tripId);
         actualPrice = chosenTrip.getPrice();
         additionsList = chosenTrip.getAdditions();
@@ -188,8 +194,12 @@ public class TripBookingView extends AppLayout {
 
     private void tripUpdate(){
         Trip trip = service.getTrip(chosenTrip.getId());
-        createTripObject(trip,traveller);
-        service.updateTrip(trip);
+        if(loginView.number != null){
+            Traveller traveller= travellerService.getTraveller(loginView.number);
+            createTripObject(trip,traveller);
+            service.updateTrip(trip);
+        }
+
     }
 
     private void createTripObject(Trip trip,Traveller traveller){

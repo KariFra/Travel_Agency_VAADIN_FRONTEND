@@ -73,6 +73,7 @@ public class ArticlesView extends AppLayout {
         addToNavbar(logo, tabs);
         serveButtons();
         setContent(verticalLayout);
+        setFilter();
         refresh();
         }
 

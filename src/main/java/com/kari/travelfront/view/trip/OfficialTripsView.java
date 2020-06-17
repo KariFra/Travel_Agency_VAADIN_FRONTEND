@@ -29,6 +29,7 @@ public class OfficialTripsView extends AppLayout {
     //db
     private TripService service = new TripService();
 
+
     //elements
     private Image logo = new Image("https://image.flaticon.com/icons/svg/2990/2990507.svg", "Trip agency logo");
     private Tabs tabs = new Tabs(new Tab(new RouterLink("Home", MainView.class)),
