@@ -15,7 +15,7 @@ This project is a part of the Bootcamp: Java Plus Program at Kodilla.
 -[x] Clone down this repository:
 
 ```bash
-git clone 
+git clone https://github.com/KariFra/Travel_Agency_VAADIN_FRONTEND.git
 ```
 -[x] After dowloading the code to your local repository, build the project:
 
