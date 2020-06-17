@@ -22,7 +22,7 @@ git clone
 ```bash
 gradlew build
 ```
--[x] Back End written with help of VAADIN Library can be found here: 
+-[x] Back End  can be found here: 
 
 ```bash
 https://github.com/KariFra/Travel_Agency_REST-API.git
