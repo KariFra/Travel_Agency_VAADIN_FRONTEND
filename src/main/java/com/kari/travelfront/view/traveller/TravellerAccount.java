@@ -24,6 +24,7 @@ import com.vaadin.flow.data.validator.EmailValidator;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.stream.Collectors;
 
@@ -38,7 +39,8 @@ public class TravellerAccount extends AppLayout {
     private Traveller activeTraveller = service.getTraveller(loginView.number);
 
     //complaint
-    private Complaint complaint = new Complaint();
+    @Autowired
+    private Complaint complaint;
 
 
     //elements
